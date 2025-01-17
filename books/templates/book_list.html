@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+        <header>
+        <h1>&copy; 2025 Book Library</h1>
+    </header>
+    <div class="container mt-5">
+        <h2 style="text-align: center;">Hello {{ user }}</h2>
+
+            <ul>
+    {% for book in page_obj %}
+        <li>
+            <h3><a href="{% url 'book_detail' book.id %}">{{ book.title }}</a> - {{ book.user }} {% if book.user == user %}-your book{% endif %} -id {{ book.id }}</h3>
+        </li>
+    {% empty %}
+        <li>No books available.</li>
+    {% endfor %}
+</ul>
+
+                <!-- Пагинация -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+
+        </div>
+        <a href="http://127.0.0.1:8000/create/" class="btn btn-danger">Create</a>
+        <a href="http://127.0.0.1:8000/logout/" class="btn btn-danger">Logout</a>
+    </div>
+    <br>
+</body>
+</html>

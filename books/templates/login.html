@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- Здесь нужно загрузить статический тег -->
+    {% load static %}
+
+    <!-- Подключаем CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Login</h1>
+    </header>
+
+    <div class="container">
+        <!-- Форма входа -->
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Log In</button>
+        </form>
+
+        <!-- Ссылка на регистрацию -->
+        <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Book Library</p>
+    </footer>
+</body>
+</html>
