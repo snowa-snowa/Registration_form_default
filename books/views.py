@@ -7,6 +7,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseForbidden
 from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_protect
+from django.db.models import Q
 
 
 # Страница регистрации
@@ -43,18 +44,23 @@ def logout_confirmation_view(request):
 
 
 # Список книг
-# @login_required(login_url='/register/')
 def book_list(request):
+    query = request.GET.get('q')  # Получение поискового запроса
     books = Book.objects.all().order_by('-id')
-    paginator = Paginator(books, 4)
+
+    if query:
+        books = books.filter(
+            Q(title__icontains=query) | Q(description__icontains=query)
+        )
+    paginator = Paginator(books, 4)  # Пагинация на 4 книги
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'book_list.html', {'page_obj': page_obj})
+    return render(request, 'book_list.html', {'page_obj': page_obj, 'query': query})
 
 
 # Создание книги
-@login_required(login_url='/register/')
+@login_required# (login_url='/register/')
 def book_create(request):
     if request.method == 'POST':
         form = BookForm(request.POST)
@@ -66,6 +72,7 @@ def book_create(request):
     else:
         form = BookForm()
     return render(request, 'book_form.html', {'form': form})
+
 
 # Просмотр книги
 def book_detail(request, id):
