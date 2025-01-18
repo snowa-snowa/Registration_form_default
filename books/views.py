@@ -43,7 +43,7 @@ def logout_confirmation_view(request):
 
 
 # Список книг
-@login_required(login_url='/register/')
+# @login_required(login_url='/register/')
 def book_list(request):
     books = Book.objects.all().order_by('-id')
     paginator = Paginator(books, 4)
@@ -54,7 +54,7 @@ def book_list(request):
 
 
 # Создание книги
-@login_required
+@login_required(login_url='/register/')
 def book_create(request):
     if request.method == 'POST':
         form = BookForm(request.POST)

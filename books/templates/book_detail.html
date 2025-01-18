@@ -17,10 +17,10 @@
         <p>Description: {{ book.description }}</p>
         <p>Author: {{ book.user.username }}</p>
         {% if book.user == user %}
-        <a href="{% url 'book_update' book.id %}">Edit</a>
-        <a href="{% url 'book_delete' book.id %}">Delete</a>
+        <hr>
+        <pre><a href="{% url 'book_update' book.id %}">Edit</a>   <a href="{% url 'book_delete' book.id %}">Delete</a></pre>
         {% endif %}
-        <p><a href="{% url 'book_list' %}">Back to Book List</a></p>
+<a href="{% url 'book_list' %}">Back to list</a>
     </div>
 
     <footer>

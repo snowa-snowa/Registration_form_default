@@ -13,7 +13,9 @@
     </header>
 
     <div class="container">
-        <p>{{ book.title }}</p>
+        <h2>Title: {{ book.title }}</h2>
+        <h2>Id: {{ book.id }}</h2>
+
         <form method="POST">
             {% csrf_token %}
             <button type="submit">Yes, Delete</button>

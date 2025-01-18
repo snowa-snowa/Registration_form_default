@@ -12,8 +12,14 @@
         <h1>&copy; 2025 Book Library</h1>
     </header>
     <div class="container mt-5">
-        <h2 style="text-align: center;">Hello {{ user }}</h2>
-
+            {% if user.is_authenticated %}
+        <h2 style="text-align: center;">Hello, {{ user.username }}!</h2>
+        <pre><a href="http://127.0.0.1:8000/create/" class="btn btn-danger">Write a book</a>   <a href="http://127.0.0.1:8000/logout/" class="btn btn-danger">Logout</a>   <a href="http://127.0.0.1:8000/signup/" class="btn btn-danger">Signup</a></pre>
+    {% else %}
+        <h2 style="text-align: center;">Hello anonim, in order to write your books, you need to create an account or register</h2>
+        <pre><a href="http://127.0.0.1:8000/login/" class="btn btn-danger">Login</a>   <a href="http://127.0.0.1:8000/signup/" class="btn btn-danger">Signup</a></pre>
+    {% endif %}
+        <hr>
             <ul>
     {% for book in page_obj %}
         <li>
@@ -43,8 +49,6 @@
             </span>
 
         </div>
-        <a href="http://127.0.0.1:8000/create/" class="btn btn-danger">Create</a>
-        <a href="http://127.0.0.1:8000/logout/" class="btn btn-danger">Logout</a>
     </div>
     <br>
 </body>
