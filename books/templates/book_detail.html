@@ -8,23 +8,27 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
+
     <header>
         <h1>{{ book.title }}</h1>
     </header>
 
     <div class="container">
-        <p>Id: {{ book.id }}</p>
-        <p>Description: {{ book.description }}</p>
-        <p>Author: {{ book.user.username }}</p>
+            <p>Id: {{ book.id }}</p>
+            <p>Description: {{ book.description }}</p>
+            <p>Author: {{ book.user.username }}</p>
+
         {% if book.user == user %}
-        <hr>
-        <pre><a href="{% url 'book_update' book.id %}">Edit</a>   <a href="{% url 'book_delete' book.id %}">Delete</a></pre>
+            <hr>
+            <pre><a href="{% url 'book_update' book.id %}">Edit</a>   <a href="{% url 'book_delete' book.id %}">Delete</a></pre>
         {% endif %}
-<a href="{% url 'book_list' %}">Back to list</a>
+
+            <a href="{% url 'book_list' %}">Back to list</a>
     </div>
 
     <footer>
         <p>&copy; 2025 Book Library</p>
     </footer>
+
 </body>
 </html>

@@ -8,25 +8,26 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
+
         <header>
-        <h1>&copy; 2025 Book Library</h1>
-    </header>
+            <h1>&copy; 2025 Book Library</h1>
+        </header>
+
     <div class="container mt-5">
-            {% if user.is_authenticated %}
-        <h2 style="text-align: center;">Hello, {{ user.username }}!</h2>
-        <pre><a href="http://127.0.0.1:8000/create/" class="btn btn-danger">Write a book</a>   <a href="http://127.0.0.1:8000/logout/" class="btn btn-danger">Logout</a>   <a href="http://127.0.0.1:8000/signup/" class="btn btn-danger">Signup</a></pre>
-    {% else %}
-        <h2 style="text-align: center;">Hello anonim, in order to write your books, you need to create an account or register</h2>
-        <pre><a href="http://127.0.0.1:8000/login/" class="btn btn-danger">Login</a>   <a href="http://127.0.0.1:8000/signup/" class="btn btn-danger">Signup</a></pre>
-    {% endif %}
+        {% if user.is_authenticated %}
+            <h2 style="text-align: center;">Hello, {{ user.username }}!</h2>
+            <pre><a href="http://127.0.0.1:8000/create/" class="btn btn-danger">Write a book</a>   <a href="http://127.0.0.1:8000/logout/" class="btn btn-danger">Logout</a>   <a href="http://127.0.0.1:8000/signup/" class="btn btn-danger">Signup</a></pre>
+        {% else %}
+            <h2 style="text-align: center;">Hello anonim, in order to write your books, you need to create an account or register</h2>
+            <pre><a href="http://127.0.0.1:8000/login/" class="btn btn-danger">Login</a>   <a href="http://127.0.0.1:8000/signup/" class="btn btn-danger">Signup</a></pre>
+        {% endif %}
 
     <form method="get" action="">
         <input
             type="text"
             name="q"
-            placeholder="Enter the title or author of the book"
-            value="{{ query|default:'' }}"
-        >
+            placeholder="Enter the title of the book"
+            value="{{ query|default:'' }}">
         <button type="submit">Search</button>
     </form>
 
@@ -48,17 +49,17 @@
                     <a href="?page={{ page_obj.previous_page_number }}">previous</a>
                 {% endif %}
 
-                <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
 
                 {% if page_obj.has_next %}
                     <a href="?page={{ page_obj.next_page_number }}">next</a>
                     <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
                 {% endif %}
             </span>
-
         </div>
+
     </div>
     <br>
 </body>

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
+
     <header>
         <h1>{% if form.instance.id %}Edit Book{% else %}Write Book{% endif %}</h1>
     </header>
@@ -16,14 +17,14 @@
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">{% if form.instance.id %}Save{% else %}Write Book{% endif %}</button>
+                <button type="submit">{% if form.instance.id %}Save{% else %}Write Book{% endif %}</button>
         </form>
-
-        <p><a href="{% url 'book_list' %}">Back to Book List</a></p>
+                <p><a href="{% url 'book_list' %}">Back to Book List</a></p>
     </div>
 
     <footer>
         <p>&copy; 2025 Book Library</p>
     </footer>
+
 </body>
 </html>

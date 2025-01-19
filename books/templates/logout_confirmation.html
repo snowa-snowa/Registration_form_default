@@ -3,30 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Подтверждение выхода</title>
-            {% load static %}
+
+    {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
 </head>
 <body>
+
         <header>
-        <h1>Do you really want to get out?</h1>
-    </header>
+            <h1>Do you really want to get out?</h1>
+        </header>
 
     <div class="container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px;">
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit"><br>Logout
-            <br>
-
-            <br></button>
-        <br>
-        <br>
-               <button><a href="/">Back</a></button>
-    </form>
+        <form method="post">
+            {% csrf_token %}
+                <button type="submit">
+                <br>Logout
+                <br>
+                <br>
+                </button>
+                <br>
+                <br>
+                <button><a href="/">Back</a></button>
+        </form>
 
     </div>
 
     <footer>
         <p>&copy; прощу прощения за то что визуально все криво, я не "front end"</p>
     </footer>
+
 </body>
 </html>
